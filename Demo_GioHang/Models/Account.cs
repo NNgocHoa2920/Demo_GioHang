@@ -11,9 +11,12 @@ namespace Demo_GioHang.Models
         //[StringLength(450,MinimumLength =10, ErrorMessage ="Do dai phai tu 10-450 ki tu")]
         public string UserName {  get; set; }
         public string Password { get; set; }
-        //[RegularExpression("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]d{3}[\\s.-]\\d{4}$",
-        //    ErrorMessage ="số điên thoại phải đúng format xxx-xxx-xxxx")]
+      
         public DateTime NgaySinh { get; set; }
+        //[RegularExpression("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]d{3}[\\s.-]\\d{4}$",
+        // ErrorMessage = "số điên thoại phải đúng format xxx-xxx-xxxx")]
+        [RegularExpression("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$",
+           ErrorMessage = "Số điện thoại phải đúng format và có 10 chữ số")]
         public string SDT { get; set; }
         public GioHang? GioHang { get; set; }
     }
