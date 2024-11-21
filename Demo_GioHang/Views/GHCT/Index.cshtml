@@ -1,12 +1,10 @@
-﻿@model IEnumerable<Demo_GioHang.Models.Account>
+﻿@model IEnumerable<Demo_GioHang.Models.GHCT>
 
 @{
     ViewData["Title"] = "Index";
-    var message = ViewData["message"];
 }
 
 <h1>Index</h1>
-<h5 class="btn btn-secondary">@message</h5>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -18,19 +16,13 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.SanPhamId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.GioHangId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgaySinh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SDT)
+                @Html.DisplayNameFor(model => model.SoLuong)
             </th>
             <th></th>
         </tr>
@@ -42,19 +34,13 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.SanPhamId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.GioHangId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SDT)
+                @Html.DisplayFor(modelItem => item.SoLuong)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

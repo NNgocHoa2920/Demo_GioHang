@@ -7,11 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GioHangDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<GioHangDBContext>();
 
 //khai báo d?ch v? cho session
 builder.Services.AddSession(option =>
 {
-    option.IdleTimeout = TimeSpan.FromSeconds(15); // Khai báo kho?ng th?i gian ?? Session timeout
+    option.IdleTimeout = TimeSpan.FromSeconds(60); // Khai báo kho?ng th?i gian ?? Session timeout
     //có ngh?a là n?u ng??i dùng k th?c hi?n yêu c?u nào trong vòng 15s thì session c?a h? s? h?t h?n
     //n?u có thì b? ??m s? reset , d? li?u ???c l?u vào webserver
 

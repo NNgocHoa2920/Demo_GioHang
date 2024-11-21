@@ -90,7 +90,7 @@ namespace Demo_GioHang.Controllers
             {
                 //lưu dữ liệu login vào sesion với key la Account
                 HttpContext.Session.SetString("Account",userName);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","SanPham");
             }
         }
     }

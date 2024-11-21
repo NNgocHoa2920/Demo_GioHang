@@ -7,6 +7,6 @@
         public Guid GioHangId { get; set; } 
         public GioHang ? GioHang {  get; set; }
         public SanPham? SanPham { get; set; }
-        public int SoLuong { get; set; }
+        public int SoLuong { get; set; } // xử lí cọng dòn 
     }
 }

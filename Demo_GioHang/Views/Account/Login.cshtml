@@ -1,8 +1,10 @@
 ﻿@{
     ViewBag.Title = "Login";
+    var mess = TempData["Status"];
 }
 
 <h2>Login</h2>
+<h5 class="btn btn-info disabled">@mess</h5>
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
