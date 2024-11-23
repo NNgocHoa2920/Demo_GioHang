@@ -1,5 +1,6 @@
 ﻿using Demo_GioHang.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList.Extensions;
 
 namespace Demo_GioHang.Controllers
 {
@@ -13,21 +14,45 @@ namespace Demo_GioHang.Controllers
             _db = db;
         }
         //lấy toàn bộ dữ liệu của sản phẩm
-        public IActionResult Index()
+        public IActionResult Index(string name, int page=3, int pageSize=10)
         {
             //lấy giá trị sessin có tên username
             var sesionData = HttpContext.Session.GetString("Account");
             if(sesionData==null)
             {
-                ViewData["mess"] = "Chưa đăng nhập bạn ôi";
-                return View();
+                TempData["mess"] = "Chưa đăng nhập bạn ôi";
+                return RedirectToAction("Login", "Account");
             }
             else
             {
                 ViewData["mess1"] = "Mời bạn xem sản phẩm";
-                var list = _db.SanPhams.ToList();
-                return View(list);
+                //var list = _db.SanPhams.ToList();
+                //return View(list);
 
+            }
+            var list = _db.SanPhams.ToPagedList(page,pageSize);
+
+            //TÌM KIẾM
+            if (string.IsNullOrEmpty(name))
+            {
+                return View(list);
+            }
+            else
+            {
+                var spSearch = _db.SanPhams
+                    .Where(x => x.SanPhamName.ToLower().Contains(name.ToLower())).ToList();
+                //lưu số lượng tìm kiếm vào ViewwData va ViewBag
+                ViewData["count"]= spSearch.Count;
+                ViewBag.Count= spSearch.Count;
+                if(spSearch.Count==0)
+                {
+                    //nếu k thấy key cần tìm thì trả về toàn bộ dữ liệu
+                    return View(list);
+                }
+                else
+                {
+                    return View(spSearch);
+                }
             }
            
 

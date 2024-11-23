@@ -1,13 +1,18 @@
-﻿@model IEnumerable<Demo_GioHang.Models.SanPham>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Demo_GioHang.Models.SanPham>
 
 @{
     ViewData["Title"] = "Index";
-    var mess = ViewData["mess"];
+    
     var mess1 = ViewData["mess1"];
 }
-@{if(Model !=null)
-{
-    <h1>@mess1</h1>
+
+ <h1>@mess1</h1>
+ <form asp-controller="SanPham" asp-action="Index" method="get">
+     <input type="text" id=" = "searchInput" name="name" placeholder="Nhập tên eml"/>
+
+ </form>
 
 
 <h1>Index</h1>
@@ -19,13 +24,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SanPhamId)
+               SanPhamID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SanPhamName)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().SanPhamName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
             </th>
             <th></th>
         </tr>
@@ -69,9 +74,8 @@
 }
     </tbody>
 </table>
-}
-else{
-<h5>@mess</h5>
-}
-}
+<div class="pagination">
+    @Html.PagedListPager(Model,page => Url.Action("Index", new {page}))
+</div>
+
 
